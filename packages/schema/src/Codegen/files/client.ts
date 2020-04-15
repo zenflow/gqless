@@ -41,9 +41,12 @@ export class ClientFile extends File {
         return json
       }
 
-      export const client = new Client<${
-        this.codegen.schema.queryType
-      }>(schema.${this.codegen.schema.queryType}, fetchQuery)
+      export const createClient = (queryFetcher = fetchQuery) => 
+        new Client<${
+          this.codegen.schema.queryType
+        }>(schema.${this.codegen.schema.queryType}, fetchQuery)
+
+      export const client = createClient();
 
       export const query = client.query
     `
